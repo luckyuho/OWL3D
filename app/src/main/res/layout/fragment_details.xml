@@ -15,11 +15,11 @@
 
         <variable
             name="viewModel"
-            type="com.hi.dhl.pokemon.ui.detail.DetailViewModel" />
+            type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
 
         <variable
             name="albumAdapter"
-            type="com.hi.dhl.pokemon.ui.detail.AlbumAdapter" />
+            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

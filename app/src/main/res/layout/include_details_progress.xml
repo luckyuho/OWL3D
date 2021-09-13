@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.hi.dhl.pokemon.ui.detail.DetailViewModel" />
+            type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
 
     </data>
 

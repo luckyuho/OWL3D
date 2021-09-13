@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.hi.dhl.pokemon.utils.CollapsibleToolbar
+    <com.hi.dhl.wl3d.utils.CollapsibleToolbar
         android:id="@+id/constraintToolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -103,5 +103,5 @@
         </LinearLayout>
 
 
-    </com.hi.dhl.pokemon.utils.CollapsibleToolbar>
+    </com.hi.dhl.wl3d.utils.CollapsibleToolbar>
 </layout>

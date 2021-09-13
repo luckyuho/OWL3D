@@ -10,7 +10,7 @@
 <!--            type="com.hi.dhl.pokemon.model.PokemonInfoModel.AlbumModel" />-->
         <variable
             name="album"
-            type="com.hi.dhl.pokemon.model.PokemonInfoModel" />
+            type="com.hi.dhl.wl3d.model.PokemonInfoModel" />
 
     </data>
 

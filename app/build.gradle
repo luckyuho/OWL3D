@@ -13,7 +13,7 @@ android {
     buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.hi.dhl.pokemon"
+        applicationId "com.hi.dhl.wl3d"
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
         versionCode BuildConfig.versionCode

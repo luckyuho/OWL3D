@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "PokemonGo"
+rootProject.name = "WL3D"

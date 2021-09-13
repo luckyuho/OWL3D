@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".PokemonGoApp"
+        android:name=".WL3DApp"
         android:icon="@drawable/wl3d"
         android:label="@string/app_name"
         android:roundIcon="@drawable/wl3d"

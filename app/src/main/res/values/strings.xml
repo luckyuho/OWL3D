@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WL3D</string>
+    <string name="footer_retary">重试</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="search_et_hit">Please enter file name</string>
+    <string name="name">Name:</string>
+    <string name="accountid">AccountId:</string>
+    <string name="createat">CreateAt:</string>
+    <string name="description">Description:</string>
+    <string name="updatedat">UpdatedAt:</string>
+</resources>

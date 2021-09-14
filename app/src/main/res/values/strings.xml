@@ -9,4 +9,6 @@
     <string name="createat">CreateAt:</string>
     <string name="description">Description:</string>
     <string name="updatedat">UpdatedAt:</string>
+    <string name="browser">Browser</string>
+    <string name="favorite">Favorite</string>
 </resources>

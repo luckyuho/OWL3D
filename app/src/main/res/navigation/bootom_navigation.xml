@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bootom_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_favorite">
 
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.hi.dhl.wl3d.ui.favorite.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_nav_favorite_to_nav_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_movie"
+        android:name="com.hi.dhl.wl3d.ui.Browser.BrowserFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_browser" >
+        <action
+            android:id="@+id/action_nav_movie_to_nav_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="com.hi.dhl.wl3d.ui.detail.DetailsFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_details" >
+<!--        <argument-->
+<!--            android:name="movie"-->
+<!--            app:argType="com.kharismarizqii.movieapp.data.model.Movie" />-->
+    </fragment>
 </navigation>

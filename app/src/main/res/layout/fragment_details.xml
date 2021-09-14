@@ -17,9 +17,9 @@
             name="viewModel"
             type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
 
-        <variable
-            name="albumAdapter"
-            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />
+<!--        <variable-->
+<!--            name="albumAdapter"-->
+<!--            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />-->
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -61,9 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginTop="@dimen/margin_45dp"
-                android:src="@drawable/default_poke"
                 android:background="@color/color_white"
-
                 app:bindingInfo="@{viewModel.pokemon.lrThumbnailUrl}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

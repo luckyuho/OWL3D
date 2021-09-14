@@ -32,7 +32,7 @@ class DetailsFragment(args: String) : DataBindingFragment(R.layout.fragment_deta
     private val mViewModel: DetailViewModel by activityViewModels()
     private lateinit var mPokemonModel: PokemonItemModel
 //    private lateinit var mPokemonInfoModel: PokemonInfoModel
-    val mAlbumAdapter: AlbumAdapter by lazy { AlbumAdapter() }
+//    val mAlbumAdapter: AlbumAdapter by lazy { AlbumAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +46,7 @@ class DetailsFragment(args: String) : DataBindingFragment(R.layout.fragment_deta
         mBinding.apply {
 //            pokemonListModel = mPokemonModel
 //            pokemonListModel = PokemonInfoModel()
-            albumAdapter = mAlbumAdapter
+//            albumAdapter = mAlbumAdapter
             viewModel = mViewModel.apply {
                 fectchPokemonInfo2(mPokemonModel.url)
                     .observe(viewLifecycleOwner, Observer {})

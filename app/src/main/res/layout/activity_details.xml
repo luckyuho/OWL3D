@@ -12,9 +12,9 @@
             name="viewModel"
             type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
 
-        <variable
-            name="albumAdapter"
-            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />
+<!--        <variable-->
+<!--            name="albumAdapter"-->
+<!--            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />-->
     </data>
 
     <androidx.fragment.app.FragmentContainerView

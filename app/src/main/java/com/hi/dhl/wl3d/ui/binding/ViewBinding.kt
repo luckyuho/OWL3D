@@ -12,7 +12,7 @@ import com.hi.dhl.jprogressview.JProgressView
 import com.hi.dhl.wl3d.R
 import com.hi.dhl.wl3d.model.PokemonInfoModel
 import com.hi.dhl.wl3d.model.PokemonItemModel
-import com.hi.dhl.wl3d.ui.detail.AlbumAdapter
+//import com.hi.dhl.wl3d.ui.detail.AlbumAdapter
 import com.hi.dhl.wl3d.ui.detail.DetailActivity
 import timber.log.Timber
 
@@ -49,13 +49,13 @@ fun bindingLoading(swipe: SwipeRefreshLayout, isLoading: Boolean) {
     if (!isLoading) swipe.isEnabled = false
 }
 
-@BindingAdapter("bindProgressValue", "bindProgressMaxValue")
-fun bindingProgressView(progress: JProgressView, progressValue: Int, maxProgressValue: Int) {
-    progress
-        .setProgress(progressValue.toFloat())
-        .setMaxProgress(maxProgressValue)
-        .startAnimal()
-}
+//@BindingAdapter("bindProgressValue", "bindProgressMaxValue")
+//fun bindingProgressView(progress: JProgressView, progressValue: Int, maxProgressValue: Int) {
+//    progress
+//        .setProgress(progressValue.toFloat())
+//        .setMaxProgress(maxProgressValue)
+//        .startAnimal()
+//}
 
 @BindingAdapter("bindFinish")
 fun bindingFinish(view: View, finish: Boolean) {
@@ -101,16 +101,16 @@ fun bindingInfo(imageView: ImageView, url: String?) {
 //
 //}
 
-@BindingAdapter("bindAdapter", "bindData")
-fun bindingAdapter(
-    recyclerView: RecyclerView,
-    albumAdapter: AlbumAdapter,
-    data: List<PokemonInfoModel>?
-) {
-    data?.let {
-        recyclerView.adapter = albumAdapter
-        albumAdapter.submitList(data)
-        albumAdapter.notifyDataSetChanged()
-    }
-
-}
+//@BindingAdapter("bindAdapter", "bindData")
+//fun bindingAdapter(
+//    recyclerView: RecyclerView,
+//    albumAdapter: AlbumAdapter,
+//    data: List<PokemonInfoModel>?
+//) {
+//    data?.let {
+//        recyclerView.adapter = albumAdapter
+//        albumAdapter.submitList(data)
+//        albumAdapter.notifyDataSetChanged()
+//    }
+//
+//}

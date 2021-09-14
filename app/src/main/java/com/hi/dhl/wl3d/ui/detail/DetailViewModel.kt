@@ -69,51 +69,51 @@ class DetailViewModel @ViewModelInject constructor(
             }
     }
 
-    /**
-     * 方法三
-     */
-    suspend fun fetchPokemonInfo3(name: String) =
-        pokemonRepository.fetchPokemonInfo(name)
-            .onStart {
-                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-                mLoading.set(true)
-            }
-            .catch {
-                // 捕获上游出现的异常
-                mLoading.set(false)
-            }
-            .onCompletion {
-                // 请求完成
-                mLoading.set(false)
-            }.asLiveData()
+//    /**
+//     * 方法三
+//     */
+//    suspend fun fetchPokemonInfo3(name: String) =
+//        pokemonRepository.fetchPokemonInfo(name)
+//            .onStart {
+//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
+//                mLoading.set(true)
+//            }
+//            .catch {
+//                // 捕获上游出现的异常
+//                mLoading.set(false)
+//            }
+//            .onCompletion {
+//                // 请求完成
+//                mLoading.set(false)
+//            }.asLiveData()
 
-    /**
-     * 方法一
-     */
-    fun fetchPokemonInfo1(name: String) = viewModelScope.launch {
-        pokemonRepository.fetchPokemonInfo(name)
-            .onStart {
-                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-                mLoading.set(true)
-            }
-            .catch {
-                // 捕获上游出现的异常
-                mLoading.set(false)
-            }
-            .onCompletion {
-                // 请求完成
-                mLoading.set(false)
-            }
-            .collectLatest { result ->
-                result.doFailure { throwable ->
-                    _failure.value = throwable?.message ?: "failure"
-                }
-
-                result.doSuccess { value ->
-                    _pokemon.postValue(value)
-                }
-            }
-    }
+//    /**
+//     * 方法一
+//     */
+//    fun fetchPokemonInfo1(name: String) = viewModelScope.launch {
+//        pokemonRepository.fetchPokemonInfo(name)
+//            .onStart {
+//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
+//                mLoading.set(true)
+//            }
+//            .catch {
+//                // 捕获上游出现的异常
+//                mLoading.set(false)
+//            }
+//            .onCompletion {
+//                // 请求完成
+//                mLoading.set(false)
+//            }
+//            .collectLatest { result ->
+//                result.doFailure { throwable ->
+//                    _failure.value = throwable?.message ?: "failure"
+//                }
+//
+//                result.doSuccess { value ->
+//                    _pokemon.postValue(value)
+//                }
+//            }
+//    }
 
 
     companion object {

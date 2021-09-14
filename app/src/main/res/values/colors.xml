@@ -16,4 +16,5 @@
     <color name="head_bg_red">#FA6555</color>
     <color name="color_black">#000000</color>
     <color name="color_purple">#800080</color>
+    <color name="color_gray">#666666</color>
 </resources>

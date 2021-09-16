@@ -16,5 +16,5 @@ class Entity2ItemModelMapper : Mapper<PokemonEntity, PokemonItemModel> {
 //        PokemonItemModel(name = input.name, url = input.url)
 
     override fun map(input: PokemonEntity): PokemonItemModel =
-        PokemonItemModel(name = input.name, url = input.thumbnailUrl)
+        PokemonItemModel(name = input.name, thumbnailUrl = input.thumbnailUrl)
 }

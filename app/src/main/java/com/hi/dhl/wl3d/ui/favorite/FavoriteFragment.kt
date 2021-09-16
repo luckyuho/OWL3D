@@ -24,10 +24,10 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class FavoriteFragment : DataBindingFragment(R.layout.fragment_favorite) {
 
-    private val mBinding: FragmentFavoriteBinding by binding()
-    //    private val mViewModel: MainViewModel by viewModels()
-    private val mViewModel: MainViewModel by viewModels()
-    private val mPokemonAdapter by lazy { PokemonAdapter() }
+//    private val mBinding: FragmentFavoriteBinding by binding()
+//    //    private val mViewModel: MainViewModel by viewModels()
+//    private val mViewModel: MainViewModel by viewModels()
+//    private val mPokemonAdapter by lazy { PokemonAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,42 +38,42 @@ class FavoriteFragment : DataBindingFragment(R.layout.fragment_favorite) {
 //    val mAlbumAdapter: AlbumAdapter by lazy { AlbumAdapter() }
 
 
-            mBinding.apply {
-                recyleView.adapter = mPokemonAdapter.withLoadStateFooter(FooterAdapter(mPokemonAdapter))
-                mainViewModel = mViewModel
-                lifecycleOwner = this@FavoriteFragment
-            }
-
-            /**
-             * 分为 数据库 和 网络搜索
-             * 可以运行注释掉的代码，文章链接：https://juejin.cn/post/6854573220457086990
-             */
-            mBinding.layoutHeader.searchView.addTextChangedListener {
-                val result = it.toString()
-                mViewModel.queryParameterForDb(result) // 搜索数据库
-//                mViewModel.queryParameterForNetWork(result) // 网络搜索
-            }
-
-            mViewModel.postOfData().observe(viewLifecycleOwner, Observer {
-                mPokemonAdapter.submitData(lifecycle, it)
-                mBinding.swiperRefresh.isEnabled = false
-            })
-
-            lifecycleScope.launchWhenCreated {
-                mPokemonAdapter.loadStateFlow.collectLatest { state ->
-                    mBinding.swiperRefresh.isRefreshing = state.refresh is LoadState.Loading
-                }
-            }
-
-            // 数据库搜索回调监听
-            mViewModel.searchResultForDb.observe(viewLifecycleOwner, Observer {
-                mPokemonAdapter.submitData(lifecycle, it)
-            })
-
-            // 网络搜索回调监听
-            mViewModel.searchResultMockNetWork.observe(viewLifecycleOwner, Observer {
-//            mPokemonAdapter.submitData(lifecycle, it)
-            })
+//            mBinding.apply {
+//                recyleView.adapter = mPokemonAdapter.withLoadStateFooter(FooterAdapter(mPokemonAdapter))
+//                mainViewModel = mViewModel
+//                lifecycleOwner = this@FavoriteFragment
+//            }
+//
+//            /**
+//             * 分为 数据库 和 网络搜索
+//             * 可以运行注释掉的代码，文章链接：https://juejin.cn/post/6854573220457086990
+//             */
+//            mBinding.layoutHeader.searchView.addTextChangedListener {
+//                val result = it.toString()
+//                mViewModel.queryParameterForDb(result) // 搜索数据库
+////                mViewModel.queryParameterForNetWork(result) // 网络搜索
+//            }
+//
+//            mViewModel.postOfData().observe(viewLifecycleOwner, Observer {
+//                mPokemonAdapter.submitData(lifecycle, it)
+//                mBinding.swiperRefresh.isEnabled = false
+//            })
+//
+//            lifecycleScope.launchWhenCreated {
+//                mPokemonAdapter.loadStateFlow.collectLatest { state ->
+//                    mBinding.swiperRefresh.isRefreshing = state.refresh is LoadState.Loading
+//                }
+//            }
+//
+//            // 数据库搜索回调监听
+//            mViewModel.searchResultForDb.observe(viewLifecycleOwner, Observer {
+//                mPokemonAdapter.submitData(lifecycle, it)
+//            })
+//
+//            // 网络搜索回调监听
+//            mViewModel.searchResultMockNetWork.observe(viewLifecycleOwner, Observer {
+////            mPokemonAdapter.submitData(lifecycle, it)
+//            })
         }
 
         companion object {

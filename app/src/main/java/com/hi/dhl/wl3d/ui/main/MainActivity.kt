@@ -26,9 +26,9 @@ import kotlinx.coroutines.flow.collectLatest
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val mBinding: ActivityMainBinding by binding()
-    private val mViewModel: MainViewModel by viewModels()
-    private val mPokemonAdapter by lazy { PokemonAdapter() }
+//    private val mBinding: ActivityMainBinding by binding()
+//    private val mViewModel: MainViewModel by viewModels()
+//    private val mPokemonAdapter by lazy { PokemonAdapter() }
 
     private lateinit var navController: NavController
 

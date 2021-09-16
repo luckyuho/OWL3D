@@ -10,11 +10,11 @@ import androidx.fragment.app.FragmentFactory
  *     desc  :
  * </pre>
  */
-class CustomFragmentFactory() : FragmentFactory() {
-
-    override fun instantiate(classLoader: ClassLoader, className: String): Fragment =
-        when (className) {
-            DetailsFragment::class.java.name -> DetailsFragment(DetailsFragment::class.java.simpleName)
-            else -> super.instantiate(classLoader, className)
-        }
-}
+//class CustomFragmentFactory() : FragmentFactory() {
+//
+//    override fun instantiate(classLoader: ClassLoader, className: String): Fragment =
+//        when (className) {
+//            DetailsFragment::class.java.name -> DetailsFragment(DetailsFragment::class.java.simpleName)
+//            else -> super.instantiate(classLoader, className)
+//        }
+//}

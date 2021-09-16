@@ -6,9 +6,9 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="pokemonListModel"-->
-<!--            type="com.hi.dhl.pokemon.model.PokemonItemModel" />-->
+        <variable
+            name="pokemonListModel"
+            type="com.hi.dhl.wl3d.model.PokemonItemModel" />
 <!--        <variable-->
 <!--            name="pokemonListModel"-->
 <!--            type="com.hi.dhl.pokemon.model.PokemonInfoModel" />-->
@@ -22,10 +22,11 @@
 <!--            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />-->
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:bindLoading="@{viewModel.mLoading}">
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        >-->
+<!--        app:bindLoading="@{viewModel.mLoading}"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -33,16 +34,16 @@
             android:background="@color/color_black"
             tools:context=".ui.main.MainActivity">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_10dp"
-                android:layout_marginTop="@dimen/margin_10dp"
-                android:padding="@dimen/space_3dp"
-                android:src="@drawable/ic_arrow"
-                app:bindFinish="@{true}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/margin_10dp"-->
+<!--                android:layout_marginTop="@dimen/margin_10dp"-->
+<!--                android:padding="@dimen/space_3dp"-->
+<!--                android:src="@drawable/ic_arrow"-->
+<!--                app:bindFinish="@{true}"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 <!--            <com.google.android.material.imageview.ShapeableImageView-->
 <!--                android:id="@+id/avator"-->
@@ -163,7 +164,7 @@
                 android:id="@+id/nameValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.pokemon.name}"
+                android:text="@{pokemonListModel.name}"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:translationZ="100dp"
@@ -295,6 +296,10 @@
                 tools:text="description" />
 
 
+
+
+
+
 <!--            <androidx.cardview.widget.CardView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="match_parent"-->
@@ -360,6 +365,6 @@
 <!--                layout="@layout/include_details_progress"-->
 <!--                app:viewModel="@{viewModel}" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
 </layout>

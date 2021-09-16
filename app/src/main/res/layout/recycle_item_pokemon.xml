@@ -42,7 +42,7 @@
                 android:layout_width="@dimen/recycle_item_avrtor"
                 android:layout_height="@dimen/recycle_item_avrtor"
                 android:layout_marginTop="@dimen/recycle_item_base_margin"
-                app:bindingAvator="@{pokemon.url}" />
+                app:bindingAvator="@{pokemon.thumbnailUrl}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"

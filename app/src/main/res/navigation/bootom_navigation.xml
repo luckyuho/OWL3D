@@ -29,8 +29,8 @@
         android:name="com.hi.dhl.wl3d.ui.detail.DetailsFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_details" >
-<!--        <argument-->
-<!--            android:name="movie"-->
-<!--            app:argType="com.kharismarizqii.movieapp.data.model.Movie" />-->
+        <argument
+            android:name="movie"
+            app:argType="com.hi.dhl.wl3d.model.PokemonItemModel"/>
     </fragment>
 </navigation>

@@ -5,15 +5,21 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.load
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hi.dhl.jprogressview.JProgressView
 import com.hi.dhl.wl3d.R
 import com.hi.dhl.wl3d.model.PokemonInfoModel
 import com.hi.dhl.wl3d.model.PokemonItemModel
+import com.hi.dhl.wl3d.ui.Browser.BrowserFragmentDirections
 //import com.hi.dhl.wl3d.ui.detail.AlbumAdapter
 import com.hi.dhl.wl3d.ui.detail.DetailActivity
+import dagger.hilt.android.internal.managers.ViewComponentManager
 import timber.log.Timber
 
 /**
@@ -27,10 +33,17 @@ import timber.log.Timber
 @BindingAdapter("bindingAvator")
 fun bindingAvator(imageView: ImageView, url: String) {
 //    Log.d("bindingAvator: ", url)
-    imageView.load(url) {
-        crossfade(true)
-        placeholder(R.drawable.vr)
-    }
+//    imageView.load(url) {
+//        crossfade(true)
+//        placeholder(R.drawable.vr)
+//    }
+    Glide.with(imageView.context)
+        .load(url)
+        .centerCrop()
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .error(R.drawable.ic_error)
+        .placeholder(R.drawable.vr)
+        .into(imageView)
 }
 
 @BindingAdapter("bindSmallImage")
@@ -68,10 +81,13 @@ fun bindingFinish(view: View, finish: Boolean) {
 @BindingAdapter("bindClick")
 fun bindingClick(view: View, model: PokemonItemModel) {
     view.setOnClickListener {
-        DetailActivity.jumpAcrtivity(
-            view.context,
-            model
-        )
+//        DetailActivity.jumpAcrtivity(
+//            view.context,
+//            model
+//        )
+//        Log.d("showargsClick", model.toString())
+        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(model)
+        findNavController(view).navigate(action)
     }
 }
 

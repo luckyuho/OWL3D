@@ -16,7 +16,15 @@ import kotlinx.android.parcel.Parcelize
 data class PokemonItemModel(
     var id: String = "",
     val name: String,
-    val url: String
+////    val url: String,
+//
+//    val accountId: String = "",
+//    val createdAt: Long = 0,
+//    val description: String = "",
+//    val lrThumbnailUrl: String = "",
+    val thumbnailUrl: String
+////    val type: Int,
+//    val updatedAt: Long = 0
 ) : Parcelable {
     companion object {
         val diffCallback = object : DiffUtil.ItemCallback<PokemonItemModel>() {
@@ -24,7 +32,7 @@ data class PokemonItemModel(
                 oldItem: PokemonItemModel,
                 newItem: PokemonItemModel
             ): Boolean =
-                oldItem.url == newItem.url
+                oldItem.thumbnailUrl == newItem.thumbnailUrl
 
             override fun areContentsTheSame(
                 oldItem: PokemonItemModel,

@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import com.hi.dhl.jdatabinding.binding
@@ -24,6 +25,8 @@ import com.hi.dhl.wl3d.ui.main.PokemonAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import com.hi.dhl.wl3d.databinding.FragmentBrowserBinding
+import com.hi.dhl.wl3d.ui.browser.BrowserAdapter
+import com.hi.dhl.wl3d.ui.browser.BrowserViewModel
 import com.hi.dhl.wl3d.ui.main.footer.FooterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -31,7 +34,7 @@ import kotlinx.coroutines.flow.collectLatest
 @FlowPreview
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class BrowserFragment : DataBindingFragment(R.layout.fragment_browser) {
+class BrowserFragment : DataBindingFragment(R.layout.fragment_browser){//, BrowserAdapter.OnItemClickListener{
 
 //    private val mBinding: FragmentDetailsBinding by binding()
 //    private val mViewModel: DetailViewModel by activityViewModels()
@@ -39,16 +42,23 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser) {
 //    //    private lateinit var mPokemonInfoModel: PokemonInfoModel
 //    val mAlbumAdapter: AlbumAdapter by lazy { AlbumAdapter() }
 
-    private val mBinding: FragmentBrowserBinding by binding()
+    private var _mBinding: FragmentBrowserBinding ?= null //by binding()
+    private val mBinding get() = _mBinding!!
 //    private val mViewModel: MainViewModel by viewModels()
-    private val mViewModel: MainViewModel by activityViewModels()
-    private val mPokemonAdapter by lazy { PokemonAdapter() }
+    private val mViewModel: BrowserViewModel by viewModels()
+//    private val mPokemonAdapter by lazy { BrowserAdapter() }
 //
+    private val adapter by lazy { BrowserAdapter() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    _mBinding = FragmentBrowserBinding.bind(view)
+
+//        val adapter = BrowserAdapter(this)
+
         mBinding.apply {
-            recyleView.adapter = mPokemonAdapter.withLoadStateFooter(FooterAdapter(mPokemonAdapter))
+            recyleView.adapter = adapter.withLoadStateFooter(FooterAdapter(adapter))
             mainViewModel = mViewModel
             lifecycleOwner = this@BrowserFragment
         }
@@ -63,16 +73,18 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser) {
 ////                mViewModel.queryParameterForNetWork(result) // 网络搜索
 //        }
 
-        mViewModel.postOfData().observe(viewLifecycleOwner, Observer {
-            mPokemonAdapter.submitData(lifecycle, it)
+        mViewModel.movies.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
             mBinding.swiperRefresh.isEnabled = false
-        })
+        }
 
         lifecycleScope.launchWhenCreated {
-            mPokemonAdapter.loadStateFlow.collectLatest { state ->
+            adapter.loadStateFlow.collectLatest { state ->
                 mBinding.swiperRefresh.isRefreshing = state.refresh is LoadState.Loading
             }
         }
+
+
 
 //        // 数据库搜索回调监听
 //        mViewModel.searchResultForDb.observe(viewLifecycleOwner, Observer {
@@ -84,6 +96,12 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser) {
 ////            mPokemonAdapter.submitData(lifecycle, it)
 //        })
     }
+
+
+//    override fun onItemClick(movie: PokemonItemModel) {
+//        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(movie)
+//        findNavController().navigate(action)
+//    }
 
     companion object {
         private const val TAG = "MainActivity"
@@ -150,5 +168,5 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser) {
 //                replace(fragmentContainerId, DetailsFragment::class.java, bundle)
 //            }
 //        }
-}
 //}
+}

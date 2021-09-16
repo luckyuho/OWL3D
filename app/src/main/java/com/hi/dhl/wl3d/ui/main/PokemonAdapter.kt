@@ -1,5 +1,6 @@
 package com.hi.dhl.wl3d.ui.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class PokemonAdapter :
     override fun onBindViewHolder(holder: PokemonViewModel, position: Int) {
         dowithTry {
             val data = getItem(position)
+            Log.d("showargsvindview", data.toString())
             data?.let {
                 holder.bindData(data, position)
             }

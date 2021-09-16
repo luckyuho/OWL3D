@@ -28,7 +28,7 @@ object PokemonFactory {
 
     val pagingConfig = PagingConfig(
         // 每页显示的数据的大小
-        pageSize = 30,
+        pageSize = 40,
 
         // 开启占位符
         enablePlaceholders = true,
@@ -43,6 +43,6 @@ object PokemonFactory {
          * internal const val DEFAULT_INITIAL_PAGE_MULTIPLIER = 3
          * val initialLoadSize: Int = pageSize * DEFAULT_INITIAL_PAGE_MULTIPLIER
          */
-        initialLoadSize = 30
+        initialLoadSize = 40
     )
 }

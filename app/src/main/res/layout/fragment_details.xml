@@ -9,13 +9,17 @@
         <variable
             name="pokemonListModel"
             type="com.hi.dhl.wl3d.model.PokemonItemModel" />
+
+        <variable
+            name="isCheck"
+            type="Boolean" />
 <!--        <variable-->
 <!--            name="pokemonListModel"-->
 <!--            type="com.hi.dhl.pokemon.model.PokemonInfoModel" />-->
 
-        <variable
-            name="viewModel"
-            type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />-->
 
 <!--        <variable-->
 <!--            name="albumAdapter"-->
@@ -68,6 +72,7 @@
                 android:gravity="end"
                 android:textOff=""
                 android:textOn=""
+                app:bindingToggle="@{isCheck}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,7 +82,7 @@
                 android:layout_height="250dp"
                 android:layout_marginTop="@dimen/margin_45dp"
                 android:background="@color/color_white"
-                app:bindingInfo="@{viewModel.pokemon.lrThumbnailUrl}"
+                app:bindingInfo="@{pokemonListModel.lrThumbnailUrl}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -195,7 +200,7 @@
                 android:id="@+id/accountValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.pokemon.accountId}"
+                android:text="@{pokemonListModel.accountId}"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:translationZ="100dp"
@@ -225,7 +230,7 @@
                 android:id="@+id/createAtValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(viewModel.pokemon.createdAt)}"
+                android:text="@{String.valueOf(pokemonListModel.createdAt)}"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:translationZ="100dp"
@@ -255,7 +260,7 @@
                 android:id="@+id/updatedAtValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(viewModel.pokemon.updatedAt)}"
+                android:text="@{String.valueOf(pokemonListModel.updatedAt)}"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:translationZ="100dp"
@@ -285,7 +290,7 @@
                 android:id="@+id/descriptionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.pokemon.description}"
+                android:text="@{pokemonListModel.description}"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:translationZ="100dp"

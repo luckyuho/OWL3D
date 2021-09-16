@@ -2,10 +2,7 @@ package com.hi.dhl.wl3d.di
 
 import android.app.Application
 import androidx.room.Room
-import com.hi.dhl.wl3d.data.local.AppDataBase
-import com.hi.dhl.wl3d.data.local.PokemonDao
-import com.hi.dhl.wl3d.data.local.PokemonInfoDao
-import com.hi.dhl.wl3d.data.local.RemoteKeysDao
+import com.hi.dhl.wl3d.data.local.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,5 +51,11 @@ object RoomModule {
     @Singleton
     fun providerRemoteKeysDao(appDataBase: AppDataBase): RemoteKeysDao {
         return appDataBase.remoteKeysDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providerFavoriteImageDao(appDataBase: AppDataBase): FavoriteImageDao {
+        return appDataBase.favoriteImageDao()
     }
 }

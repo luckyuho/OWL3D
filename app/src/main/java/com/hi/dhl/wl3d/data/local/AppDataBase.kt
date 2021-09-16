@@ -26,4 +26,5 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun remoteKeysDao(): RemoteKeysDao
     abstract fun pokemonInfoDao(): PokemonInfoDao
     abstract fun favoriteImageDao(): FavoriteImageDao
+
 }

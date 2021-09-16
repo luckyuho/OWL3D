@@ -3,6 +3,7 @@ package com.hi.dhl.wl3d.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
 import com.hi.dhl.wl3d.data.entity.PokemonEntity
 import com.hi.dhl.wl3d.data.local.AppDataBase
 import com.hi.dhl.wl3d.data.mapper.Mapper
@@ -84,6 +85,44 @@ class PokemonRepositoryImpl(
             // 数据映射，数据库实体 PersonEntity ——>  上层用到的实体 Person
             pagingData.map { mapper2ItemMolde.map(it) }
         }
+    }
+
+
+    // Favorite
+    override suspend fun addToFavorite(favoriteMovie: FavoriteImageEntity) = db.favoriteImageDao().addToFavorite(favoriteMovie)
+
+    override fun getFavoriteMovies() : Flow<PagingData<FavoriteImageEntity>> {
+        return Pager(pageConfig) {
+            // 加载数据库的数据
+//            db.pokemonDao().pokemonInfoByParameter(parameter)
+            db.favoriteImageDao().getFavoriteMovie()
+        }.flow.map { pagingData ->
+
+            // 数据映射，数据库实体 PersonEntity ——>  上层用到的实体 Person
+            pagingData.map { it }
+        }
+
+    }
+
+//    override suspend fun checkMovie(url: String): Boolean {
+//        val favoriteImageDao = db.favoriteImageDao()
+//        return favoriteImageDao.checkMovie(url) > 0
+//    }
+//            Flow<PokemonResult<Boolean>> {
+//        return flow {
+//            try {
+//        val favoriteImageDao = db.favoriteImageDao()
+//        val isCheck = favoriteImageDao.checkMovie(url)>0
+//
+//                emit(PokemonResult.Success(isCheck))
+//            } catch (e: Exception) {
+//                emit(PokemonResult.Failure(e.cause))
+//            }
+//        }.flowOn(Dispatchers.IO) // 通过 flowOn 切换到 io 线程
+//    }
+
+    override suspend fun removeFromFavorite(id: String){
+        db.favoriteImageDao().removeFromFavorite(id)
     }
 
     companion object {

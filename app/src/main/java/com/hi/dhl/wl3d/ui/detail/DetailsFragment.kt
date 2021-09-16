@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -16,8 +17,7 @@ import com.hi.dhl.wl3d.R
 import com.hi.dhl.wl3d.databinding.FragmentDetailsBinding
 import com.hi.dhl.wl3d.model.PokemonItemModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.*
 
 /**
  * <pre>
@@ -49,17 +49,26 @@ class DetailsFragment : DataBindingFragment(R.layout.fragment_details) {
 //
 ////        PokemonInfoModel = PokemonInfoModel()
 //
+//    var _isChecked = false
+//    CoroutineScope(Dispatchers.IO).launch{
+//        val count = mViewModel.checkMovie(args.movie.thumbnailUrl)
+//        withContext(Dispatchers.Main){
+//            _isChecked = count
+//        }
+//    }
+
         mBinding.apply {
             pokemonListModel = args.movie
 ////            pokemonListModel = PokemonInfoModel()
 ////            albumAdapter = mAlbumAdapter
-            viewModel = mViewModel.apply {
-                fectchPokemonInfo2(args.movie.thumbnailUrl)
-                    .observe(viewLifecycleOwner, Observer {})
-            }
+            isCheck = true
+//            viewModel = mViewModel.apply {
+//                fectchPokemonInfo2(args.movie.thumbnailUrl)
+//                    .observe(viewLifecycleOwner, Observer {})
+//            }
 ////            Log.d("bindingInfoinFragment", viewModel.pokemon.value?.lrThumbnailUrl.toString())
 //
-            lifecycleOwner = this@DetailsFragment
+//            lifecycleOwner = this@DetailsFragment
         }
 
 //    Log.d("showargslrThumbnailUrl", args.movie.lrThumbnailUrl)
@@ -68,6 +77,28 @@ class DetailsFragment : DataBindingFragment(R.layout.fragment_details) {
         mViewModel.failure.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
+
+
+//    toggleFavorite.setOnClickListener {
+//        _isChecked = !_isChecked
+//        if (_isChecked){
+//            viewModel.addToFavorite(movie)
+//        } else{
+//            viewModel.removeFromFavorite(movie.id)
+//        }
+//        toggleFavorite.isChecked = _isChecked
+//    }
+
+//        fun toggleFavorite(_isChecked: Boolean) {
+//            if (_isChecked) {
+//                mViewModel.addToFavorite(args.movie)
+//            }
+////        } else{
+////            mViewModel.removeFromFavorite(movie.id)
+////        }
+//        }
+
+
 //
 //        /**
 //         * 这三种方式的使用和 之前在 [DetailActivity] 使用方式一样

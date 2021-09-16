@@ -4,6 +4,8 @@ import android.app.Activity
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
@@ -19,6 +21,7 @@ import com.hi.dhl.wl3d.model.PokemonItemModel
 import com.hi.dhl.wl3d.ui.Browser.BrowserFragmentDirections
 //import com.hi.dhl.wl3d.ui.detail.AlbumAdapter
 import com.hi.dhl.wl3d.ui.detail.DetailActivity
+import com.hi.dhl.wl3d.ui.detail.DetailsFragment
 import dagger.hilt.android.internal.managers.ViewComponentManager
 import timber.log.Timber
 
@@ -60,6 +63,17 @@ fun bindingLoading(swipe: SwipeRefreshLayout, isLoading: Boolean) {
     Timber.tag("bindingLoading").e(" isLoading = ${isLoading}")
     swipe.isRefreshing = isLoading
     if (!isLoading) swipe.isEnabled = false
+}
+
+@BindingAdapter("bindingToggle")
+fun bindingToggle(toggleButton: ToggleButton, isCheck: Boolean) {
+//    Timber.tag("bindingLoading").e(" isLoading = ${isLoading}")
+//    swipe.isRefreshing = isLoading
+//    if (!isLoading) swipe.isEnabled = false
+    toggleButton.setOnClickListener {
+        toggleButton.isChecked = isCheck
+        Toast.makeText(toggleButton.context, "${toggleButton.isChecked}", Toast.LENGTH_SHORT).show()
+    }
 }
 
 //@BindingAdapter("bindProgressValue", "bindProgressMaxValue")

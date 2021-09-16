@@ -3,17 +3,17 @@ package com.hi.dhl.wl3d.ui.detail
 import androidx.databinding.ObservableBoolean
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
 import com.hi.dhl.wl3d.data.remote.doFailure
 import com.hi.dhl.wl3d.data.remote.doSuccess
 import com.hi.dhl.wl3d.data.repository.Repository
 import com.hi.dhl.wl3d.model.PokemonInfoModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import com.hi.dhl.wl3d.model.PokemonItemModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 
 /**
  * <pre>
@@ -119,5 +119,25 @@ class DetailViewModel @ViewModelInject constructor(
     companion object {
         private val TAG = "DetailViewModel"
     }
+
+    fun addToFavorite(movie: PokemonItemModel){
+        CoroutineScope(Dispatchers.IO).launch {
+            pokemonRepository.addToFavorite(
+                FavoriteImageEntity(
+                    accountId = movie.accountId,
+                    createdAt = movie.createdAt,
+                    description = movie.description,
+                    lrThumbnailUrl = movie.lrThumbnailUrl,
+                    name = movie.name,
+                    thumbnailUrl = movie.thumbnailUrl,
+                    updatedAt = movie.updatedAt
+                )
+            )
+        }
+    }
+
+//    suspend fun checkMovie(url: String) : Boolean{
+//        return pokemonRepository.checkMovie(url)
+//    }
 
 }

@@ -94,10 +94,15 @@ fun bindingClick(view: View, model: PokemonItemModel) {
 @BindingAdapter("bindingInfo")
 fun bindingInfo(imageView: ImageView, url: String?) {
     if (url!=null) {
-        imageView.load(url) {
-//            crossfade(true)
-//            placeholder(R.mipmap.wl3d)
-        }
+//        imageView.load(url) {
+////            crossfade(true)
+////            placeholder(R.mipmap.wl3d)
+//        }
+        Glide.with(imageView.context)
+            .load(url)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .error(R.drawable.ic_error)
+            .into(imageView)
     }else{
         Log.d("bindinginfodatanull", "datanull")
     }

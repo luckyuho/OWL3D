@@ -36,7 +36,7 @@ interface PokemonDao {
     fun getPokemon(): PagingSource<Int, PokemonEntity>
 
     @Query("SELECT * FROM PokemonEntity where thumbnailUrl = :url")
-    fun getPokemonInfo(url: String): PokemonEntity
+    suspend fun getPokemonInfo(url: String): PokemonEntity
 
     @Query("DELETE FROM PokemonEntity")
     suspend fun clearPokemon()

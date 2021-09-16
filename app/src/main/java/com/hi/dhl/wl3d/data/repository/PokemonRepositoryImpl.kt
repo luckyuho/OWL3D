@@ -44,7 +44,7 @@ class PokemonRepositoryImpl(
         }
     }
 
-    override fun fetchPokemonInfo(url: String): Flow<PokemonResult<PokemonInfoModel>> {
+    override suspend fun fetchPokemonInfo(url: String): Flow<PokemonResult<PokemonInfoModel>> {
         return flow {
             try {
 //                Log.d("NeededURLInformation", "In override suspend fun fetchPokemonInfo $url")

@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
 interface Repository {
     fun fetchPokemonList(): Flow<PagingData<PokemonItemModel>>
 
-    fun fetchPokemonInfo(url: String): Flow<PokemonResult<PokemonInfoModel>>
+    suspend fun fetchPokemonInfo(url: String): Flow<PokemonResult<PokemonInfoModel>>
 
     suspend fun fetchPokemonByParameter(parameter: String): Flow<PagingData<PokemonItemModel>>
 }

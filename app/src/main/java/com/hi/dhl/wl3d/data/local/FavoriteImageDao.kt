@@ -24,6 +24,6 @@ interface FavoriteImageDao {
     @Query("DELETE FROM FavoriteImageEntity WHERE FavoriteImageEntity.thumbnailUrl = :url" )
     suspend fun removeFromFavorite(url: String) : Int
 
-//    @Query("SELECT * FROM PokemonEntity where name LIKE '%' || :parameter || '%'")
-//    fun pokemonInfoByParameter(parameter: String): PagingSource<Int, FavoriteImageEntity>
+    @Query("SELECT * FROM FavoriteImageEntity where name LIKE '%' || :parameter || '%'")
+    fun pokemonInfoByParameter(parameter: String): PagingSource<Int, FavoriteImageEntity>
 }

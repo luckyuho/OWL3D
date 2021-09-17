@@ -76,6 +76,17 @@ class FavoriteFragment : DataBindingFragment(R.layout.fragment_favorite), Favori
             }
         }
 
+
+        mBinding.layoutHeader.searchView.addTextChangedListener {
+            val result = it.toString()
+            mViewModel.queryParameterForDb(result) // 搜索数据库
+        }
+
+        // 数据库搜索回调监听
+        mViewModel.searchResultForDb.observe(viewLifecycleOwner, Observer {
+            adapter.submitData(lifecycle, it)
+        })
+
 //        val binding = FragmentFavoriteBinding.bind(view)
 //
 //        val adapter = FavoriteAdapter()

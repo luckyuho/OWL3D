@@ -41,19 +41,19 @@ class MainViewModel @Inject constructor(
     fun postOfData(): LiveData<PagingData<PokemonItemModel>> =
         pokemonRepository.fetchPokemonList().cachedIn(viewModelScope).asLiveData()
 
-    // 使用 ConflatedBroadcastChannel 进行搜索
-    val searchResultForDb = mChanncel.asFlow()
-        // 避免在单位时间内，快输入造成大量的请求
-        .debounce(500)
-        //  避免重复的搜索请求。假设正在搜索 dhl，用户删除了 l  然后输入 l。最后的结果还是 dhl。它就不会再执行搜索查询 dhl
-        // distinctUntilChanged 对于 StateFlow 任何实例是没有效果的
-        .distinctUntilChanged()
-        .flatMapLatest { search -> // 只显示最后一次搜索的结果，忽略之前的请求
-            pokemonRepository.fetchPokemonByParameter(search).cachedIn(viewModelScope)
-        }
-        .catch { throwable ->
-            //  异常捕获
-        }.asLiveData()
+//    // 使用 ConflatedBroadcastChannel 进行搜索
+//    val searchResultForDb = mChanncel.asFlow()
+//        // 避免在单位时间内，快输入造成大量的请求
+//        .debounce(500)
+//        //  避免重复的搜索请求。假设正在搜索 dhl，用户删除了 l  然后输入 l。最后的结果还是 dhl。它就不会再执行搜索查询 dhl
+//        // distinctUntilChanged 对于 StateFlow 任何实例是没有效果的
+//        .distinctUntilChanged()
+//        .flatMapLatest { search -> // 只显示最后一次搜索的结果，忽略之前的请求
+//            pokemonRepository.fetchPokemonByParameter(search).cachedIn(viewModelScope)
+//        }
+//        .catch { throwable ->
+//            //  异常捕获
+//        }.asLiveData()
 
     /**
      * 使用 MutableStateFlow 进行网络搜索

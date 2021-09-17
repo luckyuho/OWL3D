@@ -74,11 +74,11 @@ class PokemonRepositoryImpl(
     override suspend fun fetchPokemonByParameter(parameter: String): Flow<PagingData<PokemonItemModel>> {
         return Pager(pageConfig) {
             // 加载数据库的数据
-            db.pokemonDao().pokemonInfoByParameter(parameter)
+            db.favoriteImageDao().pokemonInfoByParameter(parameter)
         }.flow.map { pagingData ->
 
             // 数据映射，数据库实体 PersonEntity ——>  上层用到的实体 Person
-            pagingData.map { mapper2ItemMolde.map(it) }
+            pagingData.map { mapperfromfavorite.map(it) }
         }
     }
 

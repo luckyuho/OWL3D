@@ -6,7 +6,8 @@ import com.hi.dhl.wl3d.data.local.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+//import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
@@ -17,7 +18,7 @@ import javax.inject.Singleton
  * </pre>
  */
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 // 这里使用了 ApplicationComponent，因此 NetworkModule 绑定到 Application 的生命周期。
 object RoomModule {
 

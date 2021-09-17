@@ -10,9 +10,9 @@
             name="pokemonListModel"
             type="com.hi.dhl.wl3d.model.PokemonItemModel" />
 
-        <variable
-            name="isCheck"
-            type="Boolean" />
+<!--        <variable-->
+<!--            name="isCheck"-->
+<!--            type="Boolean" />-->
 <!--        <variable-->
 <!--            name="pokemonListModel"-->
 <!--            type="com.hi.dhl.pokemon.model.PokemonInfoModel" />-->
@@ -72,7 +72,7 @@
                 android:gravity="end"
                 android:textOff=""
                 android:textOn=""
-                app:bindingToggle="@{isCheck}"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,5 +1,6 @@
 package com.hi.dhl.wl3d.data.mapper
 
+import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
 import com.hi.dhl.wl3d.data.entity.PokemonEntity
 import com.hi.dhl.wl3d.model.PokemonItemModel
 
@@ -24,6 +25,7 @@ class Entity2ItemModelMapper : Mapper<PokemonEntity, PokemonItemModel> {
             lrThumbnailUrl = input.lrThumbnailUrl,
             thumbnailUrl = input.thumbnailUrl,
             updatedAt = input.updatedAt)
+
 //        PokemonItemModel(name = input.name, thumbnailUrl = input.thumbnailUrl)
 
 }

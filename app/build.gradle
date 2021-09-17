@@ -71,8 +71,8 @@ dependencies {
     implementation Hilt.daggerRuntime
     kapt Hilt.daggerCompiler
 
-    implementation Hilt.viewModule
-    kapt Hilt.compiler
+//    implementation Hilt.viewModule
+//    kapt Hilt.compiler
 
     implementation Depend.jDatabinding
     implementation Depend.progressview

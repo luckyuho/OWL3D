@@ -59,8 +59,8 @@
     <data>
 
         <variable
-            name="mainViewModel"
-            type="com.hi.dhl.wl3d.ui.main.MainViewModel" />
+            name="favoriteViewModel"
+            type="com.hi.dhl.wl3d.ui.favorite.FavoriteViewModel" />
 
     </data>
 

@@ -1,5 +1,6 @@
 package com.hi.dhl.wl3d.ui.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -49,19 +50,32 @@ class DetailsFragment : DataBindingFragment(R.layout.fragment_details) {
 //
 ////        PokemonInfoModel = PokemonInfoModel()
 //
-//    var _isChecked = false
-//    CoroutineScope(Dispatchers.IO).launch{
-//        val count = mViewModel.checkMovie(args.movie.thumbnailUrl)
+
+    var isChecked = false
+    CoroutineScope(Dispatchers.Main).launch{
+        isChecked = mViewModel.checkMovie(args.movie.createdAt)
+        Log.d("showfavorite1", isChecked.toString())
+        withContext(Dispatchers.Main){
+            if (isChecked){
+                mBinding.toggleFavorite.isChecked = true
+                isChecked = true
+            }else{
+                mBinding.toggleFavorite.isChecked = false
+                isChecked = false
+            }
+        }
+//        Log.d("showfavorite", boolean.toString())
 //        withContext(Dispatchers.Main){
-//            _isChecked = count
+//            _isChecked = boolean
 //        }
-//    }
+    }
+    Log.d("showfavorite", isChecked.toString())
 
         mBinding.apply {
             pokemonListModel = args.movie
+//            isCheck = isChecked
 ////            pokemonListModel = PokemonInfoModel()
 ////            albumAdapter = mAlbumAdapter
-            isCheck = true
 //            viewModel = mViewModel.apply {
 //                fectchPokemonInfo2(args.movie.thumbnailUrl)
 //                    .observe(viewLifecycleOwner, Observer {})
@@ -74,9 +88,23 @@ class DetailsFragment : DataBindingFragment(R.layout.fragment_details) {
 //    Log.d("showargslrThumbnailUrl", args.movie.lrThumbnailUrl)
 //    Log.d("showargsthumbnailUrl", args.movie.thumbnailUrl)
 //
-        mViewModel.failure.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-        })
+
+//        mViewModel.failure.observe(viewLifecycleOwner, Observer {
+//            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+//        })
+
+
+    mBinding.toggleFavorite.setOnClickListener {
+        isChecked = !isChecked
+        if (isChecked){
+            mViewModel.addToFavorite(args.movie)
+        } else{
+            mViewModel.removeFromFavorite(args.movie.thumbnailUrl)
+        }
+        mBinding.toggleFavorite.isChecked = isChecked
+//        mViewModel.addToFavorite(args.movie)
+//        Toast.makeText(this.context, "${mBinding.toggleFavorite.isChecked}", Toast.LENGTH_LONG).show()
+    }
 
 
 //    toggleFavorite.setOnClickListener {
@@ -136,6 +164,14 @@ class DetailsFragment : DataBindingFragment(R.layout.fragment_details) {
 //            manager.commit {
 //                val bundle = bundleOf(KEY_LIST_MODEL to params)
 //                replace(fragmentContainerId, DetailsFragment::class.java, bundle)
+//            }
+//        }
+//    }
+//    companion object{
+//            fun addFavorite(
+//            context: Context,
+//        ) {
+//
 //            }
 //        }
 //    }

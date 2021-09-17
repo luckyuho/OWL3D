@@ -29,7 +29,7 @@ data class PokemonItemModel(
                 oldItem: PokemonItemModel,
                 newItem: PokemonItemModel
             ): Boolean =
-                oldItem.thumbnailUrl == newItem.thumbnailUrl
+                oldItem.createdAt == newItem.createdAt
 
             override fun areContentsTheSame(
                 oldItem: PokemonItemModel,

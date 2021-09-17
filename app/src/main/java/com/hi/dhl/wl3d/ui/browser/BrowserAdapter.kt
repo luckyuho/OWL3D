@@ -13,7 +13,7 @@ import com.hi.dhl.wl3d.R
 import com.hi.dhl.wl3d.databinding.RecycleItemPokemonBinding
 import com.hi.dhl.wl3d.model.PokemonItemModel
 
-class BrowserAdapter://(private val listener : OnItemClickListener):
+class BrowserAdapter(private val listener : OnItemClickListener):
     PagingDataAdapter<PokemonItemModel, BrowserAdapter.PokemonViewModel>(PokemonItemModel.diffCallback) {
 
     override fun onBindViewHolder(holder: PokemonViewModel, position: Int) {
@@ -45,9 +45,9 @@ class BrowserAdapter://(private val listener : OnItemClickListener):
 
         override fun bindData(data: PokemonItemModel, position: Int) {
 
-//            mBinding.root.setOnClickListener {
-//                listener.onItemClick(data)
-//            }
+            mBinding.root.setOnClickListener {
+                listener.onItemClick(data)
+            }
 
             mBinding.apply {
                 data.id = "#${position + 1}"

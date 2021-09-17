@@ -1,7 +1,7 @@
 package com.hi.dhl.wl3d.ui.detail
 
 import androidx.databinding.ObservableBoolean
-import androidx.hilt.lifecycle.ViewModelInject
+//import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
 import com.hi.dhl.wl3d.data.remote.doFailure
@@ -9,11 +9,13 @@ import com.hi.dhl.wl3d.data.remote.doSuccess
 import com.hi.dhl.wl3d.data.repository.Repository
 import com.hi.dhl.wl3d.model.PokemonInfoModel
 import com.hi.dhl.wl3d.model.PokemonItemModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import javax.inject.Inject
 
 /**
  * <pre>
@@ -25,7 +27,8 @@ import kotlinx.coroutines.flow.onStart
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class DetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val pokemonRepository: Repository
 ) : ViewModel() {
     val mLoading = ObservableBoolean()
@@ -38,36 +41,36 @@ class DetailViewModel @ViewModelInject constructor(
 
     private val _failure = MutableLiveData<String>()
     val failure = _failure
-
-    /**
-     * 方法二
-     */
-    fun fectchPokemonInfo2(url: String) = liveData<PokemonInfoModel> {
-        pokemonRepository.fetchPokemonInfo(url)
-            .onStart {
-                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-                mLoading.set(true)
-            }
-            .catch {
-                // 捕获上游出现的异常
-                mLoading.set(false)
-            }
-            .onCompletion {
-                // 请求完成
-                mLoading.set(false)
-            }
-            .collectLatest { result ->
-                result.doFailure { throwable ->
-//                    Log.d("Needed_pokemon", throwable.toString())
-                    _failure.value = throwable?.message ?: "failure"
-                }
-                result.doSuccess { value ->
-                    _pokemon.postValue(value)
-//                    Log.d("Needed_pokemon", value.toString())
-                    emit(value)
-                }
-            }
-    }
+//
+//    /**
+//     * 方法二
+//     */
+//    fun fectchPokemonInfo2(url: String) = liveData<PokemonInfoModel> {
+//        pokemonRepository.fetchPokemonInfo(url)
+//            .onStart {
+//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
+//                mLoading.set(true)
+//            }
+//            .catch {
+//                // 捕获上游出现的异常
+//                mLoading.set(false)
+//            }
+//            .onCompletion {
+//                // 请求完成
+//                mLoading.set(false)
+//            }
+//            .collectLatest { result ->
+//                result.doFailure { throwable ->
+////                    Log.d("Needed_pokemon", throwable.toString())
+//                    _failure.value = throwable?.message ?: "failure"
+//                }
+//                result.doSuccess { value ->
+//                    _pokemon.postValue(value)
+////                    Log.d("Needed_pokemon", value.toString())
+//                    emit(value)
+//                }
+//            }
+//    }
 
 //    /**
 //     * 方法三
@@ -136,8 +139,14 @@ class DetailViewModel @ViewModelInject constructor(
         }
     }
 
-//    suspend fun checkMovie(url: String) : Boolean{
-//        return pokemonRepository.checkMovie(url)
-//    }
+    suspend fun checkMovie(createdAt: Long) : Boolean{
+        return pokemonRepository.checkMovie(createdAt)
+    }
+
+    fun removeFromFavorite(url: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            pokemonRepository.removeFromFavorite(url)
+        }
+    }
 
 }

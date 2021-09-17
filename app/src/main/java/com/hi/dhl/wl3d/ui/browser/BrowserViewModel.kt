@@ -1,6 +1,6 @@
 package com.hi.dhl.wl3d.ui.browser
 
-import androidx.hilt.lifecycle.ViewModelInject
+//import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -9,15 +9,18 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.hi.dhl.wl3d.data.repository.Repository
 import com.hi.dhl.wl3d.model.PokemonItemModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
 
 //@FlowPreview
 //@ExperimentalCoroutinesApi
-class BrowserViewModel @ViewModelInject constructor(
+@HiltViewModel
+class BrowserViewModel @Inject constructor(
     private val pokemonRepository: Repository
 ) : ViewModel() {
 

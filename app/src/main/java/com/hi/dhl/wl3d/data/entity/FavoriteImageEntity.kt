@@ -10,6 +10,7 @@ import java.io.Serializable
 data class FavoriteImageEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
+    val thumbnailUrl: String,
 //    val name: String,
 //    val height: Int,
 //    val weight: Int,
@@ -26,7 +27,7 @@ data class FavoriteImageEntity(
 //    val mediaId: String,
     val name: String,
 //    val status: Int,
-    val thumbnailUrl: String,
+
 //    val type: Int,
     val updatedAt: Long
 //    val width: Int

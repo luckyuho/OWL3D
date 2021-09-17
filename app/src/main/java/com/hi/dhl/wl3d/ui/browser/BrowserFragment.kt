@@ -34,7 +34,7 @@ import kotlinx.coroutines.flow.collectLatest
 @FlowPreview
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class BrowserFragment : DataBindingFragment(R.layout.fragment_browser){//, BrowserAdapter.OnItemClickListener{
+class BrowserFragment : DataBindingFragment(R.layout.fragment_browser), BrowserAdapter.OnItemClickListener{
 
 //    private val mBinding: FragmentDetailsBinding by binding()
 //    private val mViewModel: DetailViewModel by activityViewModels()
@@ -48,7 +48,7 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser){//, Brows
     private val mViewModel: BrowserViewModel by viewModels()
 //    private val mPokemonAdapter by lazy { BrowserAdapter() }
 //
-    private val adapter by lazy { BrowserAdapter() }
+    private val adapter by lazy { BrowserAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +58,11 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser){//, Brows
 //        val adapter = BrowserAdapter(this)
 
         mBinding.apply {
-            recyleView.adapter = adapter.withLoadStateFooter(FooterAdapter(adapter))
+//            recyleView.adapter = adapter.withLoadStateHeaderAndFooter(
+            recyleView.adapter = adapter.withLoadStateFooter(
+//                header = FooterAdapter(adapter),
+                footer = FooterAdapter(adapter)
+            )
             mainViewModel = mViewModel
             lifecycleOwner = this@BrowserFragment
         }
@@ -98,10 +102,10 @@ class BrowserFragment : DataBindingFragment(R.layout.fragment_browser){//, Brows
     }
 
 
-//    override fun onItemClick(movie: PokemonItemModel) {
-//        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(movie)
-//        findNavController().navigate(action)
-//    }
+    override fun onItemClick(movie: PokemonItemModel) {
+        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(movie)
+        findNavController().navigate(action)
+    }
 
     companion object {
         private const val TAG = "MainActivity"

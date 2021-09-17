@@ -24,7 +24,7 @@ object Versions {
     const val room = "2.3.0-alpha01"
     const val cardview = "1.0.0"
     const val recyclerview = "1.0.0"
-    const val fragment = "1.3.0-alpha06"
+    const val fragment = "1.2.5"
     const val anko = "0.10.8"
     const val swiperefreshlayout = "1.1.0"
     const val junit = "4.13.1"
@@ -33,7 +33,7 @@ object Versions {
     const val jDatabinding = "1.0.4"
     const val progressview = "1.0.2"
     const val runtime = "1.1.0"
-    const val hit = "2.28-alpha"
+    const val hit = "2.38.1"
     const val hitViewModule = "1.0.0-alpha01"
     const val appStartup = "1.0.0"
     const val material = "1.2.1"
@@ -62,8 +62,8 @@ object Android {
 object Hilt {
     const val daggerRuntime = "com.google.dagger:hilt-android:${Versions.hit}"
     const val daggerCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hit}"
-    const val viewModule = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hitViewModule}"
-    const val compiler = "androidx.hilt:hilt-compiler:${Versions.hitViewModule}"
+//    const val viewModule = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hitViewModule}"
+//    const val compiler = "androidx.hilt:hilt-compiler:${Versions.hitViewModule}"
 }
 
 object Coil {

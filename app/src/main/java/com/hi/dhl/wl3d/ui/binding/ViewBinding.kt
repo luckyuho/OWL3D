@@ -70,10 +70,10 @@ fun bindingToggle(toggleButton: ToggleButton, isCheck: Boolean) {
 //    Timber.tag("bindingLoading").e(" isLoading = ${isLoading}")
 //    swipe.isRefreshing = isLoading
 //    if (!isLoading) swipe.isEnabled = false
-    toggleButton.setOnClickListener {
+//    toggleButton.setOnClickListener {
         toggleButton.isChecked = isCheck
-        Toast.makeText(toggleButton.context, "${toggleButton.isChecked}", Toast.LENGTH_SHORT).show()
-    }
+//        Toast.makeText(toggleButton.context, "${toggleButton.isChecked}", Toast.LENGTH_SHORT).show()
+//    }
 }
 
 //@BindingAdapter("bindProgressValue", "bindProgressMaxValue")
@@ -92,18 +92,22 @@ fun bindingFinish(view: View, finish: Boolean) {
     }
 }
 
-@BindingAdapter("bindClick")
-fun bindingClick(view: View, model: PokemonItemModel) {
-    view.setOnClickListener {
-//        DetailActivity.jumpAcrtivity(
-//            view.context,
-//            model
-//        )
-//        Log.d("showargsClick", model.toString())
-        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(model)
-        findNavController(view).navigate(action)
-    }
-}
+//@BindingAdapter("bindClick")
+//fun bindingClick(view: View, model: PokemonItemModel) {
+//    view.setOnClickListener {
+////        DetailActivity.jumpAcrtivity(
+////            view.context,
+////            model
+////        )
+//        Log.d("showargsClick", view.context.packageName)
+//        Log.d("showargsClick", view.context.packageResourcePath)
+//        Log.d("showargsClick", view.context.packageCodePath)
+//
+//
+////        val action = BrowserFragmentDirections.actionNavMovieToNavDetails(model)
+////        findNavController(view).navigate(action)
+//    }
+//}
 
 @BindingAdapter("bindingInfo")
 fun bindingInfo(imageView: ImageView, url: String?) {

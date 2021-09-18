@@ -4,11 +4,9 @@ This app shows how to get data from website by json form
 Database is acquired from https://www.owl3d.ai/media/explore  
 
 Result is shown below:  
-<img src="https://user-images.githubusercontent.com/18595678/132817078-7a1f6395-a8ba-44d8-80a4-f1cf15480f42.png" height="300"> 
-<img src="https://user-images.githubusercontent.com/18595678/132817089-29cc06c4-88e1-4f19-aca5-9d0cbd461ef5.png" height="300"> 
-<img src="https://user-images.githubusercontent.com/18595678/132817104-da3eef5a-9c5e-44fa-a68a-b5796f274b74.png" height="300"> 
-<img src="https://user-images.githubusercontent.com/18595678/132817117-8283a2a0-49ab-4130-9d5d-131212f0473d.png" height="300"> 
-<img src="https://user-images.githubusercontent.com/18595678/133030315-52b27c9a-443d-409a-a17b-603e9d0f68af.gif" height="300"> 
+<img src="https://user-images.githubusercontent.com/18595678/133892284-a05c01b5-b465-409d-9369-87135d3334b1.gif" height="300"> 
+<img src="https://user-images.githubusercontent.com/18595678/133892286-23a55a52-4a57-4f2b-ac83-7e4349cb1be6.gif" height="300"> 
+<img src="https://user-images.githubusercontent.com/18595678/133892292-549fda32-93a0-48ba-ba63-31ecd1b8d313.gif" height="300"> 
 
 
 ## Acquring library (MVVM structure)

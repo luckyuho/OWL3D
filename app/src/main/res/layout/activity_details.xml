@@ -5,16 +5,13 @@
     <data>
 
         <variable
-            name="pokemonListModel"
-            type="com.hi.dhl.wl3d.model.PokemonItemModel" />
+            name="dataListModel"
+            type="com.hi.dhl.wl3d.model.DataItemModel" />
 
         <variable
             name="viewModel"
             type="com.hi.dhl.wl3d.ui.detail.DetailViewModel" />
 
-<!--        <variable-->
-<!--            name="albumAdapter"-->
-<!--            type="com.hi.dhl.wl3d.ui.detail.AlbumAdapter" />-->
     </data>
 
     <androidx.fragment.app.FragmentContainerView

@@ -9,8 +9,6 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.hi.dhl.wl3d.R
 import com.hi.dhl.wl3d.ui.browser.BrowserAdapter
-import com.hi.dhl.wl3d.ui.main.PokemonAdapter
-
 /**
  * <pre>
  *     author: dhl

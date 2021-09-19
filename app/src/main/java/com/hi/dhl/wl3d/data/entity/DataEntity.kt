@@ -12,22 +12,13 @@ import androidx.room.PrimaryKey
  */
 
 @Entity
-data class PokemonEntity(
-    @PrimaryKey//(autoGenerate = true)
+data class DataEntity(
+    @PrimaryKey
     val thumbnailUrl: String,
-//    val createdAt: Long,
-//    var id: Int = 0,
     val name: String,
     val description: String,
-//    val thumbnailUrl: String,
     val accountId: String,
     val createdAt: Long,
     val lrThumbnailUrl: String,
     val updatedAt: Long
-
-//    val name: String,
-//    var pokemonId: Int = 0,
-//    val page: Int = 0,
-//    val url: String,
-//    val remoteName: String
 )

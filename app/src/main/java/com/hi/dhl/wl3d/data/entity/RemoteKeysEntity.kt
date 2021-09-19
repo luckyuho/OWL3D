@@ -13,9 +13,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class RemoteKeysEntity(
-//    @PrimaryKey
-//    val remoteName: String,
-//    val nextKey: Int?
     @PrimaryKey
     val remoteName: String,
     val nextToken: String? = ""

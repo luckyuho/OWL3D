@@ -1,10 +1,9 @@
 package com.hi.dhl.wl3d.di
 
-import com.hi.dhl.wl3d.data.remote.PokemonService
+import com.hi.dhl.wl3d.data.remote.NetworkService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-//import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -39,7 +38,6 @@ object NetWorkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-//            .baseUrl("https://pokeapi.co/api/v2/")
             .baseUrl("https://d4nwe5tgl0.execute-api.us-west-2.amazonaws.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -47,7 +45,7 @@ object NetWorkModule {
 
     @Provides
     @Singleton
-    fun providePokemonService(retrofit: Retrofit): PokemonService {
-        return retrofit.create(PokemonService::class.java)
+    fun provideNetworkService(retrofit: Retrofit): NetworkService {
+        return retrofit.create(NetworkService::class.java)
     }
 }

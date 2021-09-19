@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.hi.dhl.wl3d.ui.detail.DetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActivityTheme" />
+<!--        <activity-->
+<!--            android:name="com.hi.dhl.wl3d.ui.detail.DetailActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/ActivityTheme" />-->
 
         <provider
             android:name="androidx.startup.InitializationProvider"

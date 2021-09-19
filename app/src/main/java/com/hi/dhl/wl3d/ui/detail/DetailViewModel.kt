@@ -1,20 +1,12 @@
 package com.hi.dhl.wl3d.ui.detail
 
 import androidx.databinding.ObservableBoolean
-//import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
-import com.hi.dhl.wl3d.data.remote.doFailure
-import com.hi.dhl.wl3d.data.remote.doSuccess
 import com.hi.dhl.wl3d.data.repository.Repository
-import com.hi.dhl.wl3d.model.PokemonInfoModel
-import com.hi.dhl.wl3d.model.PokemonItemModel
+import com.hi.dhl.wl3d.model.DataItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 /**
@@ -29,123 +21,33 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val pokemonRepository: Repository
+    private val dataRepository: Repository
 ) : ViewModel() {
     val mLoading = ObservableBoolean()
 
-    // 私有的 MutableLiveData 可变的，对内访问
-    private val _pokemon = MutableLiveData<PokemonInfoModel>()
-
-    // 对外暴露不可变的 LiveData，只能查询
-    val pokemon: LiveData<PokemonInfoModel> = _pokemon
-
-    private val _failure = MutableLiveData<String>()
-    val failure = _failure
-//
-//    /**
-//     * 方法二
-//     */
-//    fun fectchPokemonInfo2(url: String) = liveData<PokemonInfoModel> {
-//        pokemonRepository.fetchPokemonInfo(url)
-//            .onStart {
-//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-//                mLoading.set(true)
-//            }
-//            .catch {
-//                // 捕获上游出现的异常
-//                mLoading.set(false)
-//            }
-//            .onCompletion {
-//                // 请求完成
-//                mLoading.set(false)
-//            }
-//            .collectLatest { result ->
-//                result.doFailure { throwable ->
-////                    Log.d("Needed_pokemon", throwable.toString())
-//                    _failure.value = throwable?.message ?: "failure"
-//                }
-//                result.doSuccess { value ->
-//                    _pokemon.postValue(value)
-////                    Log.d("Needed_pokemon", value.toString())
-//                    emit(value)
-//                }
-//            }
-//    }
-
-//    /**
-//     * 方法三
-//     */
-//    suspend fun fetchPokemonInfo3(name: String) =
-//        pokemonRepository.fetchPokemonInfo(name)
-//            .onStart {
-//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-//                mLoading.set(true)
-//            }
-//            .catch {
-//                // 捕获上游出现的异常
-//                mLoading.set(false)
-//            }
-//            .onCompletion {
-//                // 请求完成
-//                mLoading.set(false)
-//            }.asLiveData()
-
-//    /**
-//     * 方法一
-//     */
-//    fun fetchPokemonInfo1(name: String) = viewModelScope.launch {
-//        pokemonRepository.fetchPokemonInfo(name)
-//            .onStart {
-//                // 在调用 flow 请求数据之前，做一些准备工作，例如显示正在加载数据的按钮
-//                mLoading.set(true)
-//            }
-//            .catch {
-//                // 捕获上游出现的异常
-//                mLoading.set(false)
-//            }
-//            .onCompletion {
-//                // 请求完成
-//                mLoading.set(false)
-//            }
-//            .collectLatest { result ->
-//                result.doFailure { throwable ->
-//                    _failure.value = throwable?.message ?: "failure"
-//                }
-//
-//                result.doSuccess { value ->
-//                    _pokemon.postValue(value)
-//                }
-//            }
-//    }
-
-
-    companion object {
-        private val TAG = "DetailViewModel"
-    }
-
-    fun addToFavorite(movie: PokemonItemModel){
+    fun addToFavorite(image: DataItemModel) {
         CoroutineScope(Dispatchers.IO).launch {
-            pokemonRepository.addToFavorite(
+            dataRepository.addToFavorite(
                 FavoriteImageEntity(
-                    accountId = movie.accountId,
-                    createdAt = movie.createdAt,
-                    description = movie.description,
-                    lrThumbnailUrl = movie.lrThumbnailUrl,
-                    name = movie.name,
-                    thumbnailUrl = movie.thumbnailUrl,
-                    updatedAt = movie.updatedAt
+                    accountId = image.accountId,
+                    createdAt = image.createdAt,
+                    description = image.description,
+                    lrThumbnailUrl = image.lrThumbnailUrl,
+                    name = image.name,
+                    thumbnailUrl = image.thumbnailUrl,
+                    updatedAt = image.updatedAt
                 )
             )
         }
     }
 
-    suspend fun checkMovie(createdAt: Long) : Boolean{
-        return pokemonRepository.checkMovie(createdAt)
+    suspend fun checkImage(createdAt: Long): Boolean {
+        return dataRepository.checkImage(createdAt)
     }
 
-    fun removeFromFavorite(url: String){
+    fun removeFromFavorite(url: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            pokemonRepository.removeFromFavorite(url)
+            dataRepository.removeFromFavorite(url)
         }
     }
 

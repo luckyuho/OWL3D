@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="pokemon"
-            type="com.hi.dhl.wl3d.model.PokemonItemModel" />
+            name="showdata"
+            type="com.hi.dhl.wl3d.model.DataItemModel" />
 
     </data>
 
@@ -32,7 +32,7 @@
                 android:layout_gravity="right|top"
                 android:layout_marginTop="@dimen/margin_10dp"
                 android:layout_marginEnd="@dimen/margin_10dp"
-                android:text="@{pokemon.id}"
+                android:text="@{showdata.id}"
                 android:textColor="@android:color/background_dark"
                 android:textSize="@dimen/text_size_12sp"
                 tools:text="#01" />
@@ -42,7 +42,7 @@
                 android:layout_width="@dimen/recycle_item_avrtor"
                 android:layout_height="@dimen/recycle_item_avrtor"
                 android:layout_marginTop="@dimen/recycle_item_base_margin"
-                app:bindingAvator="@{pokemon.thumbnailUrl}" />
+                app:bindingAvator="@{showdata.thumbnailUrl}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
@@ -51,7 +51,7 @@
                 android:layout_margin="@dimen/recycle_item_base_margin"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{pokemon.name}"
+                android:text="@{showdata.name}"
                 android:textColor="@android:color/background_dark"
                 android:textSize="@dimen/text_size_16sp" />
         </LinearLayout>

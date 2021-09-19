@@ -6,10 +6,10 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.hi.dhl.wl3d.AppHelper
-import com.hi.dhl.wl3d.data.entity.PokemonEntity
+import com.hi.dhl.wl3d.data.entity.DataEntity
 import com.hi.dhl.wl3d.data.entity.RemoteKeysEntity
 import com.hi.dhl.wl3d.data.local.AppDataBase
-import com.hi.dhl.wl3d.data.remote.PokemonService
+import com.hi.dhl.wl3d.data.remote.NetworkService
 import com.hi.dhl.wl3d.ext.isConnectedNetwork
 import retrofit2.HttpException
 import timber.log.Timber
@@ -23,14 +23,14 @@ import java.io.IOException
  * </pre>
  */
 @OptIn(ExperimentalPagingApi::class)
-class PokemonRemoteMediator(
-    val api: PokemonService,
+class DataRemoteMediator(
+    val api: NetworkService,
     val db: AppDataBase
-) : RemoteMediator<Int, PokemonEntity>() {
+) : RemoteMediator<Int, DataEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PokemonEntity>
+        state: PagingState<Int, DataEntity>
     ): MediatorResult {
         try {
 
@@ -47,7 +47,7 @@ class PokemonRemoteMediator(
              * 3. 将网路插入到本地数据库中
              */
 
-            val pokemonDao = db.pokemonDao()
+            val dataDao = db.dataDao()
             val remoteKeysDao = db.remoteKeysDao()
             Timber.tag(TAG).e("loadType = ${loadType}")
             // 第一步： 判断 LoadType
@@ -69,30 +69,10 @@ class PokemonRemoteMediator(
                      */
 
                     /**
-                     * 方式一：这种方式比较简单，当前页面最后一条数据是下一页的开始位置
-                     * 通过 load 方法的参数 state 获取当页面最后一条数据
-                     */
-//                    val lastItem = state.lastItemOrNull()
-//                    if (lastItem == null) {
-//                        return MediatorResult.Success(
-//                            endOfPaginationReached = true
-//                        )
-//                    }
-//                    lastItem.page
-
-                    /**
                      * 方式二：比较麻烦，当前分页数据没有对应的远程 key，这个时候需要我们自己建表
                      */
-//                    val remoteKey = db.withTransaction {
-//                        db.remoteKeysDao().getRemoteKeys(remotePokemon)
-//                    }
-//                    if (remoteKey == null || remoteKey.nextKey == null) {
-//                        return MediatorResult.Success(endOfPaginationReached = true)
-//                    }
-//                    remoteKey.nextKey
-
                     val remoteKey = db.withTransaction {
-                        db.remoteKeysDao().getRemoteKeys(remotePokemon)
+                        db.remoteKeysDao().getRemoteKeys(remoteData)
                     }
                     if (remoteKey == null || remoteKey.nextToken == null) {
                         return MediatorResult.Success(endOfPaginationReached = true)
@@ -105,37 +85,14 @@ class PokemonRemoteMediator(
                 // 无网络加载本地数据
                 return MediatorResult.Success(endOfPaginationReached = true)
             }
-
-            // 第二步： 请问网络分页数据
-//            val page = pageKey ?: 0
-//            val result = api.fetchPokemonList(
-//                state.config.pageSize,
-//                page * state.config.pageSize
-//            ).results
-
             val page = pageKey ?: ""
-            val result = api.fetchPokemonList(page).medias
+            val result = api.fetchDataList(page).medias
             Timber.tag(TAG).e(result.toString())
 
             val endOfPaginationReached = result.isEmpty()
 
             val item = result.map {
-//                PokemonEntity(
-//                    name = it.name,
-////                    url = it.getImageUrl(),
-//                    remoteName = remotePokemon,
-//                    page = page + 1
-//                )
-
-//                val id: Int,
-//                val name: String,
-//                val description: String,
-//                val thumbnailUrl: String
-//                val accountId: String,
-//                val createdAt: Long,
-//                val lrThumbnailUrl: String,
-//                val updatedAt: Long
-                PokemonEntity(
+                DataEntity(
                     name = it.name,
                     description = it.description,
                     thumbnailUrl = it.thumbnailUrl,
@@ -149,24 +106,17 @@ class PokemonRemoteMediator(
             // 第三步： 插入数据库
             db.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-//                    remoteKeysDao.clearRemoteKeys(remotePokemon)
-//                    pokemonDao.clearPokemon(remotePokemon)
                     remoteKeysDao.clearRemoteKeys()
-                    pokemonDao.clearPokemon()
+                    dataDao.clearData()
                 }
-//                val nextKey = if (endOfPaginationReached) null else page + 1
-                val nextKey = if (endOfPaginationReached) null else api.fetchPokemonList(page).nextToken
-//                val entity = RemoteKeysEntity(
-//                    remoteName = remotePokemon,
-//                    nextKey = nextKey
-//                )
 
+                val nextKey = if (endOfPaginationReached) null else api.fetchDataList(page).nextToken
                 val entity = RemoteKeysEntity(
-                    remoteName = remotePokemon,
+                    remoteName = remoteData,
                     nextToken = nextKey
                 )
                 remoteKeysDao.insertAll(entity)
-                pokemonDao.insertPokemon(item)
+                dataDao.insertData(item)
             }
 
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
@@ -178,9 +128,8 @@ class PokemonRemoteMediator(
     }
 
     companion object {
-        private val TAG = "PokemonRemoteMediator"
-        private val remotePokemon = "pokemon"
+        private val TAG = "DataRemoteMediator"
+        private val remoteData = "data"
     }
-
 
 }

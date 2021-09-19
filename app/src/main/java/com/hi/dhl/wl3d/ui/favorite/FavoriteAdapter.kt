@@ -1,6 +1,5 @@
 package com.hi.dhl.wl3d.ui.favorite
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +8,15 @@ import androidx.paging.PagingDataAdapter
 import com.hi.dhl.jdatabinding.DataBindingViewHolder
 import com.hi.dhl.jdatabinding.dowithTry
 import com.hi.dhl.wl3d.R
-import com.hi.dhl.wl3d.databinding.RecycleItemPokemonBinding
-import com.hi.dhl.wl3d.model.PokemonItemModel
-import com.hi.dhl.wl3d.ui.browser.BrowserAdapter
+import com.hi.dhl.wl3d.databinding.RecycleItemDataBinding
+import com.hi.dhl.wl3d.model.DataItemModel
 
 class FavoriteAdapter(private val listener : OnItemClickListener):
-    PagingDataAdapter<PokemonItemModel, FavoriteAdapter.FavoriteViewModel>(PokemonItemModel.diffCallback) {
+    PagingDataAdapter<DataItemModel, FavoriteAdapter.FavoriteViewModel>(DataItemModel.diffCallback) {
 
     override fun onBindViewHolder(holder: FavoriteViewModel, position: Int) {
         dowithTry {
             val data = getItem(position)
-            Log.d("showargsvindview", data.toString())
             data?.let {
                 holder.bindData(data, position)
             }
@@ -27,7 +24,7 @@ class FavoriteAdapter(private val listener : OnItemClickListener):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewModel {
-        val view = inflateView(parent, R.layout.recycle_item_pokemon)
+        val view = inflateView(parent, R.layout.recycle_item_data)
         return FavoriteViewModel(view)
     }
 
@@ -37,13 +34,13 @@ class FavoriteAdapter(private val listener : OnItemClickListener):
     }
 
     interface OnItemClickListener {
-        fun onItemClick(movie: PokemonItemModel)
+        fun onItemClick(image: DataItemModel)
     }
 
-    inner class FavoriteViewModel(view: View) : DataBindingViewHolder<PokemonItemModel>(view) {
-        private val mBinding: RecycleItemPokemonBinding by viewHolderBinding(view)
+    inner class FavoriteViewModel(view: View) : DataBindingViewHolder<DataItemModel>(view) {
+        private val mBinding: RecycleItemDataBinding by viewHolderBinding(view)
 
-        override fun bindData(data: PokemonItemModel, position: Int) {
+        override fun bindData(data: DataItemModel, position: Int) {
 
             mBinding.root.setOnClickListener {
                 listener.onItemClick(data)
@@ -51,12 +48,11 @@ class FavoriteAdapter(private val listener : OnItemClickListener):
 
             mBinding.apply {
                 data.id = "#${position + 1}"
-                pokemon = data
+                showdata = data
                 executePendingBindings()
             }
         }
 
     }
-
 
 }

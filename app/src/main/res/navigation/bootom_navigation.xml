@@ -16,12 +16,12 @@
             app:destination="@id/nav_details" />
     </fragment>
     <fragment
-        android:id="@+id/nav_movie"
+        android:id="@+id/nav_image"
         android:name="com.hi.dhl.wl3d.ui.Browser.BrowserFragment"
-        android:label="Movie"
+        android:label="Image"
         tools:layout="@layout/fragment_browser" >
         <action
-            android:id="@+id/action_nav_movie_to_nav_details"
+            android:id="@+id/action_nav_image_to_nav_details"
             app:destination="@id/nav_details" />
     </fragment>
     <fragment
@@ -30,7 +30,7 @@
         android:label="Detail"
         tools:layout="@layout/fragment_details" >
         <argument
-            android:name="movie"
-            app:argType="com.hi.dhl.wl3d.model.PokemonItemModel"/>
+            android:name="image"
+            app:argType="com.hi.dhl.wl3d.model.DataItemModel"/>
     </fragment>
 </navigation>

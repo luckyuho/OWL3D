@@ -2,9 +2,7 @@ package com.hi.dhl.wl3d.data.repository
 
 import androidx.paging.PagingData
 import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
-import com.hi.dhl.wl3d.data.remote.PokemonResult
-import com.hi.dhl.wl3d.model.PokemonInfoModel
-import com.hi.dhl.wl3d.model.PokemonItemModel
+import com.hi.dhl.wl3d.model.DataItemModel
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -15,15 +13,12 @@ import kotlinx.coroutines.flow.Flow
  * </pre>
  */
 interface Repository {
-    fun fetchPokemonList(): Flow<PagingData<PokemonItemModel>>
-
-//    suspend fun fetchPokemonInfo(url: String): Flow<PokemonResult<PokemonInfoModel>>
-
-    suspend fun fetchPokemonByParameter(parameter: String): Flow<PagingData<PokemonItemModel>>
+    fun fetchDataList(): Flow<PagingData<DataItemModel>>
+    suspend fun fetchDataByParameter(parameter: String): Flow<PagingData<DataItemModel>>
 
     // Favorite
-    suspend fun addToFavorite(favoriteMovie: FavoriteImageEntity) : Unit
-    fun getFavoriteMovies() : Flow<PagingData<PokemonItemModel>>
-    suspend fun checkMovie(createdAt: Long) : Boolean
+    suspend fun addToFavorite(favoriteImage: FavoriteImageEntity) : Unit
+    fun getFavoriteImage() : Flow<PagingData<DataItemModel>>
+    suspend fun checkImage(createdAt: Long) : Boolean
     suspend fun removeFromFavorite(id: String) : Unit
 }

@@ -4,8 +4,8 @@ import androidx.paging.PagingConfig
 import com.hi.dhl.wl3d.data.local.AppDataBase
 import com.hi.dhl.wl3d.data.mapper.Entity2ItemModelMapper
 import com.hi.dhl.wl3d.data.mapper.InfoEntity2InfoModelMapper
-import com.hi.dhl.wl3d.data.remote.PokemonService
-import com.hi.dhl.wl3d.data.repository.PokemonRepositoryImpl
+import com.hi.dhl.wl3d.data.remote.NetworkService
+import com.hi.dhl.wl3d.data.repository.DataRepositoryImpl
 import com.hi.dhl.wl3d.data.repository.Repository
 
 /**
@@ -15,10 +15,10 @@ import com.hi.dhl.wl3d.data.repository.Repository
  *     desc  :
  * </pre>
  */
-object PokemonFactory {
+object DataFactory {
 
-    fun makePokemonRepository(api: PokemonService, db: AppDataBase): Repository =
-        PokemonRepositoryImpl(
+    fun makeDataRepository(api: NetworkService, db: AppDataBase): Repository =
+        DataRepositoryImpl(
             api,
             db,
             pagingConfig,

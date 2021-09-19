@@ -13,7 +13,7 @@ import kotlinx.android.parcel.Parcelize
  */
 
 @Parcelize
-data class PokemonItemModel(
+data class DataItemModel(
     var id: String = "",
     val name: String,
     val accountId: String = "",
@@ -24,16 +24,16 @@ data class PokemonItemModel(
     val updatedAt: Long = 0
 ) : Parcelable {
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<PokemonItemModel>() {
+        val diffCallback = object : DiffUtil.ItemCallback<DataItemModel>() {
             override fun areItemsTheSame(
-                oldItem: PokemonItemModel,
-                newItem: PokemonItemModel
+                oldItem: DataItemModel,
+                newItem: DataItemModel
             ): Boolean =
                 oldItem.createdAt == newItem.createdAt
 
             override fun areContentsTheSame(
-                oldItem: PokemonItemModel,
-                newItem: PokemonItemModel
+                oldItem: DataItemModel,
+                newItem: DataItemModel
             ): Boolean =
                 oldItem == newItem
         }

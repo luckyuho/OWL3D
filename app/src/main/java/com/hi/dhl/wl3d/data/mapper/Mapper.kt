@@ -1,8 +1,5 @@
 package com.hi.dhl.wl3d.data.mapper
 
-import com.hi.dhl.wl3d.data.entity.FavoriteImageEntity
-import com.hi.dhl.wl3d.model.PokemonItemModel
-
 /**
  * <pre>
  *     author: dhl

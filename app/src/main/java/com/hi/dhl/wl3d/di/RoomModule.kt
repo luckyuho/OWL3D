@@ -6,7 +6,6 @@ import com.hi.dhl.wl3d.data.local.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-//import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -38,14 +37,8 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun providerPokemonDao(appDataBase: AppDataBase): PokemonDao {
-        return appDataBase.pokemonDao()
-    }
-
-    @Provides
-    @Singleton
-    fun providerPokemonInfoDao(appDataBase: AppDataBase): PokemonInfoDao {
-        return appDataBase.pokemonInfoDao()
+    fun providerDataDao(appDataBase: AppDataBase): DataDao {
+        return appDataBase.dataDao()
     }
 
     @Provides

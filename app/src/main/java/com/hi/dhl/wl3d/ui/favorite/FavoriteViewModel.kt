@@ -21,7 +21,7 @@ class FavoriteViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val mChanncel = ConflatedBroadcastChannel<String>()
-    val movies = favoriteRepository.getFavoriteMovies().cachedIn(viewModelScope).asLiveData()
+    val image = favoriteRepository.getFavoriteImage().cachedIn(viewModelScope).asLiveData()
 
     // 使用 ConflatedBroadcastChannel 进行搜索
 
@@ -32,7 +32,7 @@ class FavoriteViewModel @Inject constructor(
         // distinctUntilChanged 对于 StateFlow 任何实例是没有效果的
         .distinctUntilChanged()
         .flatMapLatest { search -> // 只显示最后一次搜索的结果，忽略之前的请求
-            favoriteRepository.fetchPokemonByParameter(search).cachedIn(viewModelScope)
+            favoriteRepository.fetchDataByParameter(search).cachedIn(viewModelScope)
         }
         .catch { throwable ->
             //  异常捕获

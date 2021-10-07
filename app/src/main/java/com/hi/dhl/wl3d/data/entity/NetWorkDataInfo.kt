@@ -19,7 +19,7 @@ data class NetWorkDataInfo(
         @SerializedName("createdAt") val createdAt: Long,
         @SerializedName("description") val description: String,
         @SerializedName("height") val height: Int,
-        @SerializedName("lrThumbnailUrl") val lrThumbnailUrl: String,
+        @SerializedName("lrUrl") val lrThumbnailUrl: String,
         @SerializedName("mediaId") val mediaId: String,
         @SerializedName("name") val name: String,
         @SerializedName("status") val status: Int,

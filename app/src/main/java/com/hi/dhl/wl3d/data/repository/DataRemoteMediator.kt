@@ -74,7 +74,7 @@ class DataRemoteMediator(
                     val remoteKey = db.withTransaction {
                         db.remoteKeysDao().getRemoteKeys(remoteData)
                     }
-                    if (remoteKey == null || remoteKey.nextToken == null) {
+                    if (remoteKey == null || remoteKey.nextToken == "eyJjcmVhdGVkQXQiOjE2MTY4MzI1ODIwNDEsIm1lZGlhSWQiOiJlMWI4MmY4NC1jYjMzLTRkMGEtYjIyMy0xNzI0M2QwOGY1ZGMiLCJhY2NvdW50SWQiOiJhaWtxYm95Iiwic3RhdHVzIjoxfQ==") {
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
                     remoteKey.nextToken
@@ -102,6 +102,7 @@ class DataRemoteMediator(
                     updatedAt = it.updatedAt
                 )
             }
+
 
             // 第三步： 插入数据库
             db.withTransaction {
